@@ -17,10 +17,9 @@ class UploadExcel extends Component {
 
     this.handleFile = this.handleFile.bind(this);
     this.handleChange = this.handleChange.bind(this);
+  
   }
-  handleSaveExcel = async (user) => {
-
-  }
+  
 
   handleChange(e) {
     console.log('handle on change')
@@ -88,7 +87,7 @@ class UploadExcel extends Component {
         
         this.setState({ error: '', success: 'File uploaded successfully!' });
       } else {
-        this.setState({ error: 'File upload failed', success: '' });
+        this.setState({ error: 'File upload failed', success: '',data:[] });
 
       }
 
@@ -98,7 +97,7 @@ class UploadExcel extends Component {
 
     }
   }
-
+  
 
 
   render() {
@@ -119,6 +118,30 @@ class UploadExcel extends Component {
           <br /><br />
           <button onClick={this.handleFile}>Upload</button>
         </div>
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+             
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.data?.map((item, i) => {
+              return (
+                <tr key={i + 1}>
+                  <td>{i + 1}</td>
+                  <td>{item.name}</td>
+                  <td>{item.email}</td>
+                  <td>{item.phone}</td>
+                 
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
 
       </div>
     )
